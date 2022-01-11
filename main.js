@@ -2,9 +2,11 @@ function printFeed(posts, container) {
   // reset dell'eventuale contenuto
   container.innerHTML = '';
 
-  for (let i = 0; i < posts.lenght; i++) {
+  // cicliamo all'ionterno dell'array di posts
+  for (let i = 0; i < posts.length; i++) {
     const { id, author, profilePic, date, contentText, contentPic } = posts[i];
 
+    //stampiamo i post
     container.innerHTML += `
     <div id="${id}" class="post">
       <div class="post__header">
@@ -54,7 +56,7 @@ const postsList = [
     contentPic: 'https://unsplash.it/600/300?image=',
   },
   {
-    id: 1,
+    id: 2,
     author: 'Johnny Stecchino',
     profilePic: 'https://unsplash.it/300/300?image=',
     date: '10/27/2021',
@@ -62,7 +64,7 @@ const postsList = [
     contentPic: 'https://unsplash.it/600/300?image=',
   },
   {
-    id: 1,
+    id: 3,
     author: 'Arnold Neronero',
     profilePic: 'https://unsplash.it/300/300?image=',
     date: '11/30/2021',
