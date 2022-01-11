@@ -45,7 +45,26 @@ function printFeed(posts, container) {
 
 };
 
+function buttonColorToggle(buttonHtml) {
+  if (buttonHtml.style.color != 'blue'){
+    buttonHtml.style.color = 'blue';
+  } else {
+    buttonHtml.style.color = '';
+  }
+}
 
+function likedCounterIncrement(counterHtml) {
+  counterHtml.classList.toggle('liked');
+  if (counterHtml.classList.contains('liked')) {
+    counterHtml.innerText++;
+  } else {
+    counterHtml.innerText--;
+  }
+}
+
+function addPostIdToList(post, postsList) {
+  postsList.push(post.id);
+}
 const postsList = [
   {
     id: 1,
@@ -73,7 +92,35 @@ const postsList = [
   },
 ];
 
-
+//stampa del feed
 const postContainerHtml = document.getElementById('container');
 
 printFeed(postsList, postContainerHtml);
+
+// gestione dei like
+
+// inizzializiamo l'array di post piaciuti
+const likedPostsList = [];
+
+for (let i = 0; i < postsList.length; i++) {
+  const currentPost = postsList[i];
+
+  // individuo ogni post e il rispettivo like button
+  const currentPostHtml = document.getElementById(`${currentPost.id}`);
+  const likeButtonHtml = currentPostHtml.querySelector('a.js-like-button');
+  
+  // individuo il contatore dei like del currentPost
+  const likeCounterHtml = currentPostHtml.querySelector('b.js-likes-counter');
+
+  // event listener
+  likeButtonHtml.addEventListener('click', function() {
+
+    buttonColorToggle(likeButtonHtml);
+    likedCounterIncrement(likeCounterHtml);
+
+    addPostIdToList(currentPost, likedPostsList);
+
+  })
+  
+}
+
